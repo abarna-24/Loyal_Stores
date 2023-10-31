@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Release Raw Material</title>
+    <link rel="stylesheet" href="css/raw_release.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+    <div class="title">Release Raw Material</div>
+    <div class="content">
+        <form action="process_raw_release.php" method="POST">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Product Code</span>
+                    <input type="text" name="product_code" id="product_code" placeholder="Enter your product code" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Product Name</span>
+                    <input type="text" name="product_name" id="product_name" placeholder="Enter your product name" required>
+                </div>
+                <div class="input-box">
+                  <span class="details">Date</span>
+                  <input type="date" name="date" required>
+                </div>
+                <div class="input-box">
+                  <span class="details">Time</span>
+                  <input type="time" name="time" placeholder="Enter your number" required>
+                </div>
+                <div class="input-box" id="size_input_box" style="display: none;">
+                    <span class="details">Size</span>
+                    <input type="number" max="11" min="6" name="size" placeholder="Enter Size" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Department</span>
+                    <select name="dep" id="dep">
+                        <option value="cut">Cutting</option>
+                        <option value="up">Upper</option>
+                        <option value="Bot">Bottom</option>
+                      </select>
+                </div>
+                <div class="input-box">
+                    <span class="details">Quantity</span>
+                    <input type="number" name="quantity" placeholder="Enter Quantity" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Units</span>
+                    <input type="text" name="units" placeholder="Enter Units" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Storeman</span>
+                    <input type="text" name="storeman" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Remarks</span>
+                    <input type="text" name="remarks" placeholder="Enter Remarks" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Taken By</span>
+                    <input type="text" name="taken_by" placeholder="Enter Taken By" required>
+                </div>
+            </div>
+            <div class="button">
+                <input type="submit" value="Release">
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Add an event listener to the Product Code input
+    document.getElementById("product_code").addEventListener("input", function () {
+        var productCode = this.value;
+        var sizeInputBox = document.getElementById("size_input_box");
+        var productNameInput = document.getElementById("product_name");
+
+        // Define product code to product name mapping (change as needed)
+        var productData = {
+            "123": "Product A",
+            "456": "Product B",
+            "789": "Product C"
+        };
+        // Update the product name based on the entered product code
+        if (productData.hasOwnProperty(productCode)) {
+            productNameInput.value = productData[productCode];
+        } else {
+            productNameInput.value = ""; // Clear the field if not found
+        }
+        
+        // Show/hide the Size input based on product code
+        if (productCode === "123" || productCode === "456" || productCode === "789") {
+            sizeInputBox.style.display = "block";
+        } else {
+            sizeInputBox.style.display = "none";
+        }
+    });
+</script>
+</body>
+</html>
